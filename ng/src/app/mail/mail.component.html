@@ -1,0 +1,33 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{title}}
+    </div>
+    
+    <div class='panel-body'>
+      <div class="col-sm-1 col-lg-1">
+      </div>
+      <div class="col-sm-9 col-lg-10">        
+        <form #form="ngForm" >
+            <div class="form-group">
+            <label>Nombre :</label>
+            <input class="form-control" name="Nombre" [(ngModel)]="mail.Nombre" />
+            </div>
+            <div class="form-group">
+            <label>Email:</label>
+            <input class="form-control"  name="EMail" [(ngModel)]="mail.Email"/>
+            </div>
+            <div class="form-group">
+                    <label>Telefono:</label>
+                    <input class="form-control"  name="Telefono" [(ngModel)]="mail.Telefono"/>
+            </div>
+            <div class="form-group">
+            <label>Comentarios:</label>
+            <textarea   class="form-control"  name="Message" [(ngModel)]="mail.Message">
+                ...
+            </textarea>
+            </div>
+            <button [disabled]="!canSend" class="btn btn-primary fa fa-disc" (click)="Post()">Enviar</button>
+            <button class="btn btn-secondary" (click)="Cancelar()"> cancelar</button>                  
+        </form>
+    </div>
+</div>

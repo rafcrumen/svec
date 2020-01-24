@@ -1,0 +1,53 @@
+<form  #form="ngForm" >
+    <div class="row">
+        <button *ngIf="currentView==1" title="Agregar una imagen" class="btn btn-primary" (click)="uploadfile.click()">
+                <input type="file" #uploadfile  style="display:none" name="fotoinput" (change)="onFileSelected($event)" />
+                <span class="glyphicon glyphicon-plus"></span>
+        </button>
+        <button *ngIf="currentView==2" title="Guardar Foto" class="btn btn-primary" (click)="onUpload()">
+                <span class="glyphicon glyphicon-floppy-open"></span>
+        </button>
+        <button *ngIf="currentView==2" title="No Guardar Foto" class="btn btn-primary" (click)="currentView=1">
+            <span class="glyphicon glyphicon-ban-circle"></span>
+        </button>                
+        <button *ngIf="currentView==1" title="Vista previa" class="btn btn-primary" (click)="currentView=3">
+                <span class="glyphicon glyphicon-film"></span>
+        </button>
+        <button *ngIf="changeImage && currentView==3" title="Detener Cambio de Imagen" class="btn btn-primary" (click)="changeImage=false">
+                <span class="glyphicon glyphicon-pause"></span>
+        </button>                
+        <button *ngIf="!changeImage && currentView==3" title="Continuar Cambio de Imagen" class="btn btn-primary" (click)="changeImage=true">
+                <span class="glyphicon glyphicon-play"></span>
+        </button>                
+        <button *ngIf="currentView==3" title="Volver lista" class="btn btn-primary" (click)="currentView=1">
+            <span class="glyphicon glyphicon-circle-arrow-left"></span>
+        </button>                
+        <button *ngIf="currentView==1" title="Volver a Modelo" class="btn btn-primary" (click)="Cancelar()">
+        <span class="glyphicon glyphicon-circle-arrow-left"></span>
+        </button>                
+    </div>
+    <div class="row">
+
+    </div>
+    <div  *ngIf="currentView==1" class="tab-pane">
+        <foto-list [iddetalle]="id" [idmodelo]="idmodelo"></foto-list>
+    </div>
+    <div  *ngIf="currentView==3" class="tab-pane">
+        <girar-selector [iddetalle]="id" [idmodelo]="idmodelo" [changeImage]="changeImage"></girar-selector>
+    </div>
+
+    <div *ngIf="currentView==4">
+        <div class="form-group">
+            <label>Piso:</label>
+            <input type="number" class="form-control" name="piso" [(ngModel)]="model.piso" />
+        </div>                                        
+        <div class="form-group">
+            <label>Largo:</label>
+            <input type="number" class="form-control" name="largo" [(ngModel)]="model.largo" />
+        </div>
+        <div class="form-group">
+                <label>Ancho: </label>
+                <input type="number" class="form-control" name="ancho" [(ngModel)]="model.ancho" />
+        </div>    
+    </div>
+</form>

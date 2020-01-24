@@ -1,0 +1,27 @@
+<form  #form="ngForm" >
+    <div class="row">
+            <button *ngIf="currentView==1 && this.accion=='Agregar'" title="Guardar datos" class="btn btn-primary" (click)="Post()">
+                <span class="glyphicon glyphicon-floppy-open"></span>
+            </button>
+            <button *ngIf="currentView==1 && this.accion=='Editar'" title="Guardar datos" class="btn btn-primary" (click)="Put()">
+                    <span class="glyphicon glyphicon-floppy-open"></span>
+            </button>
+            <button title="Volver a Modelo" class="btn btn-primary" (click)="Cancelar()">
+                <span class="glyphicon glyphicon-circle-arrow-left"></span>
+            </button>                
+    </div>
+    <div *ngIf="currentView==1" class="tab-pane active" id="generales">
+        <div class="form-group">
+            <label>Nombre:</label>
+            <input class="form-control" name="corta" [(ngModel)]="model.corta" />
+        </div>
+        <div class="form-group">
+            <label>Descripcion Detallada:</label>
+            <textarea class="form-control" name="larga" [(ngModel)]="model.larga"></textarea>
+        </div>
+        <div class="form-group">
+            <label># de Ventanas: </label>
+            <input type="number" class="form-control" name="ventanas" [(ngModel)]="model.ventanas" />
+        </div>
+    </div>
+</form>

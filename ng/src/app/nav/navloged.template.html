@@ -1,0 +1,19 @@
+<nav  class="navbar navbar-inverse" style="background-color: darkcyan">
+ <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" (click)="navegar('home')">Home</a>
+    </div>  
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav"  >
+            <li><a class="btn btn-link" (click)="navegar('intervalos')">Intervalos</a></li>
+            <li><a class="btn btn-link" (click)="navegar('tareas')">Tareas</a></li>
+            <li><a class="btn btn-link" (click)="navegar('clasificaciones')">Clasificaciones</a></li>
+        </ul>
+    </div>
+ </div>
+</nav>

@@ -1,0 +1,38 @@
+<div class="col-sm-2 col-lg-4">
+    </div>    
+      <div >
+        <div class='panel panel-primary col-sm-8 col-lg-4'>
+            <div class='panel-heading'>
+                {{title}}
+            </div>
+            <div class='panel-body'>
+                <div class="form-group" *ngIf="!isDataValid" class="alert alert-danger">
+                    <div class="input-group">                                                    
+                    <strong>!!!</strong>      
+                    </div>
+                </div>        
+                <div class="form-group" *ngIf="isDataSaved" class="alert alert-danger">
+                        <div class="input-group">                                                    
+                        <strong>!!!</strong> Subdominios registrados con éxito.                             
+                        </div>
+                    </div>        
+              <form #form="ngForm">
+                  <div class="form-group">
+                    <label><b>Subdominio Aministrador :</b></label>
+                    <input class="form-control"  name="Subdominioa"  [(ngModel)]="subdominiomodel.Subdominioa" required/>
+                  </div>
+                  <div class="form-group">
+                        <label><b>Subdominio Publico :</b></label>
+                        <input class="form-control"  name="Subdominiov"  [(ngModel)]="subdominiomodel.Subdominiov" required/>
+                    </div>
+                    <div class="form-group">
+                    <button class="btn btn-primary fa fa-disc" (click)="Post()">Guardar</button>
+                    <button type="button" class="btn-default" (click)="Cancelar()">Cancel</button>
+
+                  </div>
+              </form>      
+            </div>
+        </div>
+</div>    
+      
+    
