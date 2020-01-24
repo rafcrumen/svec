@@ -1,0 +1,86 @@
+<form  #form="ngForm" >
+    <div id="tabs" class="container">	
+            <ul  class="nav nav-pills">
+            <li class="active">
+                <a  href="#generales" data-toggle="tab">Datos Generales</a>
+            </li>
+            <li><a href="#detalles" data-toggle="tab">Detalles del Inmueble</a>
+            </li>
+            <li><a href="#atencion" data-toggle="tab">Horarios de Atención</a>
+            </li>
+        </ul>   
+    </div>
+    <div class="tab-content clearfix">
+        <div class="tab-pane active" id="generales">
+            <div class="form-group">
+                <label>Clave:</label>
+                <input class="form-control" name="clave" [(ngModel)]="model.clave" />
+            </div>
+            <div class="form-group">
+                    <label>Precio:</label>
+                <input type="number" class="form-control" name="precio" [(ngModel)]="model.precio" />
+            </div>        
+            <div class="form-group">
+                <label>Descripcion Corta:</label>
+                <input class="form-control" name="corta" [(ngModel)]="model.corta" />
+            </div>
+            <div class="form-group">
+                <label>Descripcion Detallada:</label>
+                <textarea class="form-control" name="larga" [(ngModel)]="model.larga"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Descripcion Vecindario:</label>
+                <textarea class="form-control" name="vecindario" [(ngModel)]="model.vecindario"></textarea>
+            </div>     
+        </div>                                   
+        <div class="tab-pane" id="detalles">                
+        <div class="form-group">
+            <label>Año de Construcción:</label>
+            <input type="number" class="form-control" name="construido" [(ngModel)]="model.construido" />
+        </div>
+        <div class="form-group">
+            <label>Metros Cuatrados Terreno:</label>
+            <input type="number" class="form-control" name="terreno" [(ngModel)]="model.terreno" />
+        </div>
+        <div class="form-group">
+            <label>Metros Cuatrados Construcción:</label>
+            <input type="number" class="form-control" name="metros" [(ngModel)]="model.metros" />
+        </div>
+        <div class="form-group">
+            <label>Recamaras:</label>
+            <input type="number" class="form-control" name="recamaras" [(ngModel)]="model.recamaras" />
+        </div>
+        <div class="form-group">
+                <label>Baños: </label>
+                <input type="number" class="form-control" name="banos" [(ngModel)]="model.banos" />
+            </div>
+            <div class="form-group">
+                <label>Medios Baños: </label>
+                <input type="number" class="form-control" name="medios" [(ngModel)]="model.medios" />
+            </div>
+            <div class="form-group">
+                <!-- <label>Cuarto de lavado</label> 
+                <input type="checkbox" class="checkbox" name="lavado" [(ngModel)]="model.lavado"/> -->
+                <mat-checkbox name="lavado" [(ngModel)]="model.lavado">Cuarto de lavado</mat-checkbox>
+            </div>            
+            <div class="form-group">
+                <!-- <label>Cuarto de servicio</label>
+                <input type="checkbox" class="checkbox" name="cservicio" [(ngModel)]="model.cservicio"/> -->
+                <mat-checkbox name="cservicio" [(ngModel)]="model.cservicio">Cuarto de servicio</mat-checkbox>
+            </div>
+        </div>
+        <div class="tab-pane" id="atencion">                
+            <div class="form-group">
+                <label>Horarios de atención:</label>
+                <input class="form-control" name="horas" [(ngModel)]="model.horas" />
+            </div>
+            <div class="form-group">
+                <label>Días de atención: </label>
+                <input  class="form-control" name="dias" [(ngModel)]="model.dias" />
+            </div>
+        </div>
+    </div>  
+    <button *ngIf="this.accion=='Agregar'" class="btn btn-primary fa fa-disc" (click)="Post()">Salvar</button>
+    <button *ngIf="this.accion=='Editar'" class="btn btn-primary fa fa-disc" (click)="Put()">Guardar</button>
+    <button class="btn btn-secondary" (click)="Cancelar()"> cancelar</button>
+</form>

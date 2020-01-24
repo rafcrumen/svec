@@ -1,0 +1,22 @@
+<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let  elemento of lista" cdkDrag>
+            <img  name="{{elemento.id}}" src="{{dir + elemento.foto}}" height="200" width="200">
+        </div>
+</div>
+    <!-- <table class='table table-striped table-hover'>
+    <thead>
+        <tr>
+            <th colspan="2"></th>
+            <th>Descripcion</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let elemento of lista; let i = index'>
+            <td colspan="2" width="10%"><button class="btn btn-primary" (click)="Edit(elemento.id)">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </button></td>
+            <td><img  src="{{dir + elemento.foto}}" height="150" width="150">
+                {{i+1}} | {{elemento.foto}} <img  src="{{dir + elemento.foto}}" height="42" width="42"></td>
+        </tr>
+    </tbody>
+    </table> -->

@@ -1,0 +1,24 @@
+<div class="row">
+        <!--Mobile-->
+        <!-- <div class="col-xs-12 hidden-sm hidden-md hidden-lg">  
+        <img class="img-responsive" src={{imageName}} id="imagen" name ="image" style="max-width:400px; max-height:400px;"  />    
+    </div> -->
+           <!--Tab-->
+           <!-- <div class="hidden-xs col-sm-12 hidden-md hidden-lg">
+        <img class="img-responsive" src={{imageName}} id="imagen" name ="image"  style="max-width:400px; max-height:400px;" />
+    </div> -->
+        <!--Desktop-->
+        <!-- <div class="hidden-xs hidden-sm col-md-12 hidden-lg">
+        <img class="img-responsive" src={{imageName}} id="imagen" name ="image" style="max-width:400px; max-height:400px;"  />   
+    </div> -->
+        <!--Large-->
+        <!-- <div class="hidden-xs hidden-sm hidden-md col-lg-12">
+        <img class="img-responsive" src={{imageName}} id="imagen" name ="image"  style="max-width:400px; max-height:400px;" />  
+    </div> -->
+</div>
+<!-- <div > -->
+<div *ngFor='let imagen of lista; let i = index' >
+    <div  *ngIf="imageName==imagen.foto" style="display: flex; width: 70vmin; height: 70vmin; margin: 10px; padding:1vmin; border-radius: 10px; background-color: #369; ">
+        <img  src={{dir+imagen.foto}} id="imagen" name ="image" style="width: 68vmin; height: 68vmin; border-radius: 10px;"/>
+    </div>
+</div>

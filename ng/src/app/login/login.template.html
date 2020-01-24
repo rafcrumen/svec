@@ -1,0 +1,32 @@
+<div class="col-sm-2 col-lg-4">
+</div>    
+  <div >
+    <div class='panel panel-primary col-sm-8 col-lg-4'>
+        <div class='panel-heading'>
+            {{title}} 
+        </div>
+        <div class='panel-body'>
+            <div class="form-group" *ngIf="!isDataValid" class="alert alert-danger">
+                <div class="input-group">                                                    
+                <strong>!!!</strong> Usuario o Password Incorrecto                             
+                </div>
+                </div>        
+          <form #form="ngForm">
+              <div class="form-group">
+                <label><b>Usuario</b></label>
+                <input class="form-control"  name="username"  [(ngModel)]="usermodel.username" required/>
+              </div>
+              <div class="form-group">
+                <label><b>Password</b></label>
+                <input  type="password" class="form-control" name="password"  [(ngModel)]="usermodel.password"  required/>        
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary fa fa-disc" (click)="Post()">Login</button>
+                <button type="button" class="btn-default" (click)="Cancelar()">Cancel</button>
+              </div>
+          </form>      
+        </div>
+    </div>
+    
+  </div>    
+  

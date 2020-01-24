@@ -1,0 +1,51 @@
+    <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" (click)="navegar('home')">Home</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav"  >
+            <li><a class="btn btn-link" (click)="navegar('mail')">Contacto</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a (click)="navegar('signup')"><span class="glyphicon glyphicon-user"></span>Registrarse</a></li>
+            <li><a (click)="navegar('login')"><span class="glyphicon glyphicon-log-in"></span>Entrar</a></li>
+        </ul>
+    </div>
+ </div>
+ <nav *ngIf="(!router.url || router.url == '/route_home') && globals.applicationUser==null && globals.applicationUser==null" class="navbar navbar-inverse" >
+ </nav>
+<nav *ngIf="(!router.url || router.url == '/route_home') && globals.applicationUser!=null"  class="navbar navbar-inverse" style="background-color: black">
+ <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" (click)="navegar('home')">{{globals.applicationUser.Nombre}}</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav"  >
+            <li><a class="btn btn-link" style="text-align: left" (click)="navegar('subdominio')"><span class="glyphicon glyphicon-list-alt"></span>Subdominio</a></li>
+            <li><a class="btn btn-link" style="text-align: left" (click)="navegar('modelo')"><span class="glyphicon glyphicon-tags"></span> Modelo</a></li>
+            <li><a class="btn btn-link" style="text-align: left" (click)="navegar('tarea')"><span class="glyphicon glyphicon-paperclip"></span>Tareas</a></li>
+       </ul>
+        <ul class="nav navbar-nav navbar-brand navbar-inverse">
+            <li>
+                
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a (click)="logout()"><span class="glyphicon glyphicon-log-out"></span>Salir</a></li>
+        </ul>
+    </div>
+    <div class="collapse navbar-collapse">
+    </div>
+ </div>
+</nav>

@@ -1,0 +1,12 @@
+        <!-- <input type="hidden"  name="folder" [(ngModel)]="folder" />
+        <div>
+            <button class="btn btn-primary" (click)="onUpload()">Guardar Foto</button>
+        </div>         -->
+
+
+<input type="hidden"  name="folder" [(ngModel)]="folder" />
+<div>
+    <input type="file" #uploadfile  style="display:none" name="fotoinput" (change)="onFileSelected($event)" />
+    <button class="btn btn-primary" (click)="uploadfile.click()">Seleccionar Foto</button>
+    <button class="btn btn-primary" (click)="onUpload()">Guardar Foto</button>
+</div>

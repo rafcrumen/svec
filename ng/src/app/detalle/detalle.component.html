@@ -1,0 +1,43 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{title}}
+    </div>
+    <div class='panel-body'>
+        <div class="col-sm-9 col-lg-10">
+            <div class="row" *ngIf="currentState == 0">
+                    <button title="Agregar una pieza" class="btn btn-primary" (click)="Add()">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                    <button title="Volver a Modelo" class="btn btn-primary" (click)="Salir()">
+                    <span class="glyphicon glyphicon-circle-arrow-left">                                                
+                    </span>
+                    </button>                
+            </div>
+            <div *ngIf="currentState == 0">
+            <table class='table table-striped table-hover'>
+            <thead>
+                <tr>
+                    <th colspan="2"></th>
+                    <th>Descripcion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let detalle of detalles; let i = index'>
+                    <td colspan="2" width="15%">
+                        <button class="btn btn-primary" (click)="Edit(detalle.id)">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                        <button class="btn btn-primary" (click)="Fotos(detalle.id)">
+                        <span class="glyphicon glyphicon-camera"></span>
+                        </button>
+                    </td>
+                    <td>{{i+1}} | {{detalle.corta}}</td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+        <detalle-edit  *ngIf="currentState==1" [idmodelo]="idmodelo" [id]="id" (onChanged)="Changed($event)" [accion]="accion"></detalle-edit>
+        <foto-edit  *ngIf="currentState==2" [id]="id" [idmodelo]="idmodelo" (onChanged)="Changed($event)"></foto-edit>
+        </div>
+    </div>
+</div>

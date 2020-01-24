@@ -1,0 +1,61 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{title}} | {{globals.applicationUser.subdominioa}}
+    </div>
+    <div class='panel-body'>
+        <div class="col-sm-1 col-lg-1">
+        </div>
+        <div class="col-sm-9 col-lg-10">
+            <div class="row" *ngIf="currentState == 0">
+            <div>
+            <table class='table table-striped table-hover'>
+                    <thead>
+                            <tr>
+                                <th colspan="5">
+                                    <div class="input-group">
+                                        <input type="text" onChange="Filtrar(texto)" class="form-control" name="texto"  placeholder="Buscar" [(ngModel)]="texto">
+                                        <div class="input-group-btn">
+                                        <button class="btn btn-primary" (click)="Filtrar(texto)">
+                                            <i class="glyphicon glyphicon-search"></i>
+                                        </button>
+                                        <button class="btn btn-primary" (click)="Add()">
+                                            <span class="glyphicon glyphicon-plus"></span></button>
+                                        <button class="btn btn-primary" (click)="this.router.navigate(['route_home'])">
+                                            <span class="glyphicon glyphicon-home">                                                
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>                                                        
+                                </th>
+                            </tr>                         
+                        </thead>
+                        <thead>
+                    <tr>
+                        <th colspan="2">
+                        </th>
+                        <th>Clave</th>
+                        <th>Descripcion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let modelo of modelos; let i = index'>
+                        <td width="5%"><button class="btn btn-primary" (click)="Edit(modelo.id)">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            </button></td>
+                        <td width="5%">
+                            <button class="btn btn-primary" (click)="Detail(modelo.id)">
+                            <span class="glyphicon glyphicon-cog"></span>                                                           
+                            </button>
+                        </td>
+                        <td>{{i+1}} | {{modelo.clave}}</td>
+                        <td>{{modelo.corta}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+        <detalle-list *ngIf="currentState==2" [idmodelo]="id" (onChanged)="Changed($event)"></detalle-list>
+        <modelo-edit  *ngIf="currentState==1" [id]="id" (onChanged)="Changed($event)" [accion]="accion"></modelo-edit>            
+        </div>
+    </div>
+</div>
