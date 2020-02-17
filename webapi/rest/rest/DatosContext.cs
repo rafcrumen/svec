@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using Models;
+using rest.Models;
 
 namespace rest
 {
@@ -15,6 +16,7 @@ namespace rest
         public DbSet<Modelo> Modelos { get; set; }
         public DbSet<Detalle> Detalles { get; set; }
         public DbSet<Foto> Fotos { get; set; }
+        public DbSet<Logtrack> Logtracks { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

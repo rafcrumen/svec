@@ -43,10 +43,10 @@ export class DetalleEditComponent implements OnInit{
     this.model.crud = CrudActions.SelectById; 
     this.service.getById(this.id).subscribe(resultado => 
       {
-        this.modelo= resultado;
-        if (resultado && resultado.rows)
+        //this.modelo= resultado;
+        if (resultado )
         {
-          this.model = resultado.rows[0];
+          this.model = resultado;
         }
       });
   }
@@ -54,14 +54,14 @@ export class DetalleEditComponent implements OnInit{
     this.model.crud = CrudActions.Insert; 
     this.model.idmodelo = this.idmodelo;
     this.service.post(this.model).subscribe((data) => {
-        this.modelo = data;
+        this.model = data;
         this.onChanged.emit(true);
     });
   }
   Put(){
         this.model.crud = CrudActions.Update;
         this.service.put(this.model).subscribe((data) => {
-        this.modelo = data;
+        this.model = data;
         this.onChanged.emit(true);
     });
   }
@@ -72,8 +72,8 @@ export class DetalleEditComponent implements OnInit{
 onUpload(){
     if(this.selectedFile){
         const fd = new FormData();
-        fd.append("foto", this.selectedFile,this.selectedFile.name);
-        this.fotoservice.post(fd, this.globals.applicationUser.subdominioa, this.id.toString(),this.idmodelo.toString(), this.selectedFile.name).subscribe((data) => {
+        fd.append("foto", this.selectedFile,this.selectedFile.name);//this.globals.applicationUser.subdominioa,
+        this.fotoservice.post(fd,  this.id.toString(),this.idmodelo.toString(), this.selectedFile.name).subscribe((data) => {
           this.currentView=2;
         });        
     }

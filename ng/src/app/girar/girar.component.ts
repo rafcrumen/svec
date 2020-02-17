@@ -28,7 +28,8 @@ export class GirarComponent implements OnInit {
     }
    ngOnInit(){
     if (this.iddetalle > 0){    
-        this.dir = environment.endpoint + '/' + this.globals.applicationUser.subdominioa.trim() + '/' + this.idmodelo + '/';
+        //this.dir = environment.endpoint + '/' + this.globals.applicationUser.subdominioa.trim() + '/' + this.idmodelo + '/';
+        this.dir = environment.endpoint + '/' + environment.photofolder + '/' + this.globals.applicationLoginResult.Id + '/' + this.iddetalle + '/';
         this.GetAllData();
     }
     interval(this.speed).subscribe(() => {  
@@ -37,8 +38,8 @@ export class GirarComponent implements OnInit {
   }
 GetAllData(){
 this.dataService.getByIdDetalle(this.iddetalle).subscribe((data) => {
-  if (data && data.rows && data.rows.length > 0){
-    this.lista = data.rows;
+  if (data){
+    this.lista = data;
     this.moveImage();
   }
   });

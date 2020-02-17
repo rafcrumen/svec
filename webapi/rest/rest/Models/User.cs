@@ -20,5 +20,8 @@ namespace Models
         public string subdominiov { get; set; }
         public string subdominioa { get; set; }
         public byte Crud { get; set; }
+        public string Token { get; set; }
+        public string IpAddress { get; set; }
+        public string hostName { get; set; }
     }
 }

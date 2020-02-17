@@ -8,7 +8,9 @@ import { MessageService } from '../message.service';
 import { DBResult } from '../model/basemodel.model'
 import { Globals } from '../app.globals'
 import { environment } from '../../environments/environment';
+import { UrlArgs } from '../urlargs/urlargs';
 import  {  UserModel} from "../model/user.model"
+import { HandleError }  from '../error/handleError'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -20,14 +22,24 @@ export class LoginService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService) { }
-    private endPoint = environment.endpoint + 'login/';  // URL to web api
+    private endPoint = environment.endpoint + 'login';  // URL to web api
+    private _utils:UrlArgs = new UrlArgs();
+    private url:string;  // URL to web api
+    herror: HandleError;
 
-    post(data:any): Observable<UserModel>{
+    post(data:any): Observable<any>{
       return this.http.post<DBResult>(this.endPoint,  data)
       .pipe(
         catchError(this.handleError('nnnn', null)));
       }  
-
+      get (params:any): Observable<any>{
+        //this.herror = new HandleError();
+        return this.http.get<any>(this.endPoint + this._utils.args2Url(params))
+        .pipe(
+          catchError(this.handleError('nnnn', null))
+        );
+    } 
+  
   //////// Save methods //////////
 
   /**

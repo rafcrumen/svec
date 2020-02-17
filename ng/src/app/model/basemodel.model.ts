@@ -29,4 +29,3 @@ export class NodeResult {
     output: any;
     rowsAffected: number[];
 }
-  

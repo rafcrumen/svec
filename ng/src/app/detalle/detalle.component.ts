@@ -49,9 +49,9 @@ ngOnInit() {
 }
 GetAllData(){
   this.dataService.getByIdModelo(this.idmodelo).subscribe((data) => {
-    this.model = data;
-    if (data && data.rows && data.rows.length > 0){
-      this.detalles = data.rows;
+    //this.model = data;
+    if (data ){
+      this.detalles = data;
     }
   });
 

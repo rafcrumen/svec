@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router,ActivatedRoute } from "@angular/router";
 import { LocationManager } from './location/location.component';
+import { LoginService} from './service/login.service';
+import { UrlArgs } from './urlargs/urlargs';
+import { Result } from  './VModel/Result';
+import { Globals } from './app.globals'
+import { HttpParams } from '@angular/common/http';
+import { Url } from 'url';
 
 
 @Component({
@@ -10,11 +16,51 @@ import { LocationManager } from './location/location.component';
 })
 export class AppComponent implements OnInit{
   public title = 'app';
-  constructor(private router: Router, private location: LocationManager) {    
-    this.router.navigate(["route_home"]);
+  public urlArgs: UrlArgs = new UrlArgs();
+  public loginResult:Result; 
+  public token: string;
+  public userid: string;
+  public isLogguedId: boolean;
+  constructor(private loginservice:LoginService, private router: Router, private location: LocationManager, private route: ActivatedRoute,public globals: Globals) {    
+    //this.router.navigate(["route_home"]);
   } 
   ngOnInit(){
+    console.log("App Init...");
+    this.globals.applicationLoginResult = new Result();
+    let params = this.urlArgs.urlArgs();
+    if (params && Object.keys(params).length > 0){      
+      console.log("getting...");
+      this.loginservice.get(params).subscribe((data) => {
+        if (data){
+          console.log(this.globals.applicationUser);
+          this.loginResult = data;
+          this.globals.applicationHost=window.location.host;
+          this.globals.applicationLoginResult = new Result();
+          this.globals.applicationLoginResult.isSucceded = true;
+          this.globals.applicationLoginResult.Id = data.id;
+          this.globals.applicationLoginResult.Token = data.Token;
+          this.globals.applicationHttpParams = new HttpParams()
+          .set('token',data.Token)
+          .set('userid', data.id.toString());
+          console.log("va a  navegar" + params);
+          this.token = data.Token;
+          this.userid = data.id;
+          this.isLogguedId = true;
+          this.urlArgs.navegar(this.globals, this.router, "route_home");
+          console.log(data);  
+        } else {
+          console.log("ClearSearch");
+          this.urlArgs.clearSerach(this.globals);
+        }
+     });    
+    } else {
+      this.urlArgs.navegar(this.globals, this.router, "route_home");
+    }
   }
+  LogginSucceded(event){
+    //this.isLogguedId=event;
+  }
+
 }
 
 //npm install ng2-file-upload --save

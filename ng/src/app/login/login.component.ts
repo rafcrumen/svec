@@ -1,17 +1,22 @@
 import { FormsModule }   from '@angular/forms';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component,  EventEmitter, Inject, OnInit, Input, Output } from '@angular/core';
 import { Router } from "@angular/router";
+import { UrlArgs } from '../urlargs/urlargs';
 import {  UserLoginModel, LoginModel } from '../model/userlogin.model';
 import  {  UserModel} from "../model/user.model"
 import { DBResult } from '../model/basemodel.model'
 import { LoginService } from '../service/login.service';
 import { Globals } from '../app.globals'
-
+import { Result } from '../VModel/Result';
+import { HttpParams } from '@angular/common/http';
 @Component({
-  selector: 'login',
+  selector: 'app-login',
   templateUrl: './login.template.html',
 })
 export class LoginComponent implements OnInit{
+  @Input() token:string;
+  @Input() userId:number;
+  @Output() onLoginSuccess: EventEmitter<boolean>;
   title: string;
   modelo: UserModel;
   loginmodel: UserLoginModel;
@@ -23,8 +28,10 @@ export class LoginComponent implements OnInit{
   constructor(private service:LoginService, public globals: Globals, private router: Router)
   {
   this.title = "Login";    
-   }  
+  this.onLoginSuccess = new EventEmitter<boolean>();
+  }  
    ngOnInit(){
+     this.globals.applicationLoginResult = new Result();
     this.usermodel = new UserModel();
     this.usermodel.username = "";
     this.usermodel.password = "";
@@ -40,8 +47,18 @@ export class LoginComponent implements OnInit{
          if (this.modelo && this.modelo.id > 0) {
             this.globals.applicationSubdominio = null;
             this.globals.applicationUser= this.modelo;
-            console.log(this.globals.applicationUser);
-              this.router.navigate(['route_home']);
+            this.globals.applicationLoginResult.isSucceded = true;
+            this.globals.applicationLoginResult.Id = data.id;
+            this.globals.applicationLoginResult.Token = data.Token;
+
+            this.globals.applicationHttpParams = new HttpParams()
+            .set('toke',data.Token)
+            .set('userid', data.id.toString());
+            //this.router.navigate(['route_home'], { queryParams: { token: this._result.Token, userid: this._result.userId} });
+            let _urlargs = new UrlArgs()
+            _urlargs.navegar(this.globals, this.router, "route_home");
+            this.onLoginSuccess.emit(true);
+            //this.router.navigate(['route_home']);
       } else {
         this.isDataValid = false;
         }

@@ -8,6 +8,8 @@ import { MessageService } from '../message.service';
 import { DBResult } from '../model/basemodel.model'
 import { HandleError }  from '../error/handleError'
 import { environment } from '../../environments/environment';
+import { FotoModel } from '../model/foto.model';
+import { Globals } from '../app.globals';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,12 +17,13 @@ const httpOptions = {
   
   @Injectable({ providedIn: 'root' })
   export class FotolistaService {
-    private endpoint = environment.endpoint + 'foto/';
+    private endpoint = environment.endpoint + 'fotolista?token='+ this.globals.applicationLoginResult.Token+"&userid="+this.globals.applicationLoginResult.Id;
     herror: HandleError;
   
     constructor(
       private http: HttpClient,
-      private messageService: MessageService) { 
+      private messageService: MessageService,
+      public globals: Globals) { 
       this.herror = new HandleError(messageService);
       }    
     getById(id: number ): Observable<DBResult>{
@@ -30,8 +33,9 @@ const httpOptions = {
           catchError(this.herror.handleError('idn1', null))
         );
     }
-    getByIdDetalle(id: number ): Observable<DBResult>{
-        return this.http.get<DBResult>(this.endpoint + 'detalle/' + id)
+    getByIdDetalle(id: number ): Observable<FotoModel[]>{
+      console.log(this.endpoint   + "&id=" + id);
+        return this.http.get<FotoModel[]>(this.endpoint + "&id=" + id)
         .pipe(
           tap(pitos => this.herror.log('idn')),
           catchError(this.herror.handleError('idn1', null))
