@@ -36,18 +36,14 @@ export class ModeloEditComponent implements OnInit{
     this.model.crud = CrudActions.SelectById; 
     this.service.getById(this.id).subscribe(resultado => 
       {
-        this.modelo= resultado;
-        if (resultado && resultado.rows)
-        {
-          this.model = resultado.rows[0];
-        }
+        this.model= resultado;
       });
   }
   Post(){
     this.model.crud = CrudActions.Insert; 
-    this.model.iduser = this.globals.applicationUser.id;
+    this.model.iduser = this.globals.applicationLoginResult.Id;
     this.service.post(this.model).subscribe((data) => {
-        this.modelo = data;
+        this.model = data;
         this.onChanged.emit(true);
     });
   }

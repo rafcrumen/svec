@@ -24,6 +24,7 @@ namespace rest.Controllers
                 using (DatosContext ctx = new DatosContext())
                 {
                     _userResult = ctx.Users.Where(u => u.username == datos.username).FirstOrDefault();
+                    _userResult.Token = Guid.NewGuid().ToString();
                     ctx.SaveChanges();
                     _result = Ok(_userResult);
                 }
@@ -33,5 +34,21 @@ namespace rest.Controllers
             }
             return _result;
         }
+        [System.Web.Http.HttpGet]
+        public IHttpActionResult get(Guid token, int userid)
+        {
+            IHttpActionResult _result = null;
+            _result = Ok();
+            try
+            {
+                DatosContext ctx = new DatosContext();
+                _result = Ok(ctx.Users.Where(u => u.id == userid && u.Token == token.ToString()).FirstOrDefault());
+            }
+            catch (Exception ex)
+            {
+            }
+            return _result;
+        }
+
     }
 }

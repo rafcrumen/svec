@@ -53,7 +53,7 @@ export class FotolistaComponent implements OnInit{
    this.onChanged = new EventEmitter<boolean>();    
  }  
 ngOnInit() {
-  this.dir = environment.endpoint + '/' + this.globals.applicationUser.subdominioa.trim() + '/' + this.idmodelo+ '/';
+  this.dir = environment.endpoint + '/' + environment.photofolder + '/' + this.globals.applicationLoginResult.Id + '/' + this.iddetalle + '/';
   this.id=0;
   this.currentState = 0;
   this.lista = new Array<FotoModel>();
@@ -62,9 +62,8 @@ ngOnInit() {
 }
 GetAllData(){
   this.dataService.getByIdDetalle(this.iddetalle).subscribe((data) => {
-    this.model = data;
-    if (data && data.rows && data.rows.length > 0){
-      this.lista = data.rows;
+    if (data){
+      this.lista = data;
       this.ubicacion = new Array();
       this.posicion = 0; 
       this.lista.forEach(element => {

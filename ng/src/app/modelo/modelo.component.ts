@@ -14,6 +14,8 @@ import { ModeloEditComponent } from './modelo-edit.component';
 import { DetalleEditComponent } from '../detalle/detalle-edit.component';
 import { Globals, CrudActions} from '../app.globals';
 import { environment } from '../../environments/environment';
+import { UrlArgs } from '../urlargs/urlargs';
+import { HomeButtonComponent } from '../homebutton/home-button.component';
 
 const modificarmodelo = "Modificar Modelo";
 const editar = "Editar";
@@ -50,10 +52,10 @@ ngOnInit() {
   this.GetAllData();
 }
 GetAllData(){
-  this.dataService.getByIdUser(this.globals.applicationUser.id).subscribe((data) => {
-    this.model = data;
-    if (data && data.rows && data.rows.length > 0){
-      this.modelos = data.rows;
+  this.dataService.getByIdUser().subscribe((data) => {
+    //this.model = data;
+    if (data ){
+      this.modelos = data;
     }
   });
 

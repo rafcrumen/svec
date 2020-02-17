@@ -8,6 +8,7 @@ import { MessageService } from '../message.service';
 import { DBResult } from '../model/basemodel.model'
 import { HandleError }  from '../error/handleError'
 import { environment } from '../../environments/environment';
+import { Globals } from '../app.globals';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,16 +16,17 @@ const httpOptions = {
   
   @Injectable({ providedIn: 'root' })
   export class FotoService {
-    private endpoint = environment.endpoint + 'uploader/';
+    private endpoint = environment.endpoint + 'foto' + "?token="+this.globals.applicationLoginResult.Token+"&userid="+this.globals.applicationLoginResult.Id;
     herror: HandleError;
   
     constructor(
       private http: HttpClient,
-      private messageService: MessageService) { 
+      private messageService: MessageService,
+      public globals: Globals) { 
       this.herror = new HandleError(messageService);
       }    
     getById(id: number ): Observable<DBResult>{
-        return this.http.get<DBResult>(this.endpoint +  id)
+        return this.http.get<DBResult>(this.endpoint + "&id=" + id)
         .pipe(
           tap(pitos => this.herror.log('idn')),
           catchError(this.herror.handleError('idn1', null))
@@ -37,15 +39,17 @@ const httpOptions = {
           catchError(this.herror.handleError('idn1', null))
         );
     }
-    post(data:any, folder:string, iddetalle:string, idmodelo:string, filename:string): Observable<DBResult>{
-        const httpOptions = {
+    post(data:any,  iddetalle:string, idmodelo:string, filename:string): Observable<DBResult>{
+      //'path': folder, 
+      const httpOptions = {
             headers: new HttpHeaders({
-              'path': folder, 
               'filename': filename,
               'iddetalle': iddetalle,
-              'idmodelo': idmodelo})
+              'idmodelo': idmodelo,
+              'token': this.globals.applicationLoginResult.Token,
+              'userid': this.globals.applicationLoginResult.Id.toString()})
           };
-      return this.http.post<DBResult>(this.endpoint,  data, httpOptions)
+      return this.http.post<DBResult>(environment.endpoint + 'upload',  data, httpOptions)//, + "?token="++"&userid="+this.globals.applicationLoginResult.Id 
       .pipe(
         catchError(this.herror.handleError('modelo Post', null)));
       }

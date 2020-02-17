@@ -11,6 +11,8 @@ export class UserModel {
     public subdominiov: string;
     public subdominioa: string;
     public Crud?: number;
+    public Token:string;
+    public IpAddress: string;
 }
 export class UserResult //extends NodeResult 
 {

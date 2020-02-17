@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  endpointr:'http://superlistapi.pymesmaps.com.mx/',
-  endpoint: 'http://localhost:44353/'  
+  endpointr: 'http://rafael-mendoza.com/svec/webapi/',
+  endpoint: 'http://localhost:44353/',
+  photofolder: 'Uploads'
 };
 
 /*

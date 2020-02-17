@@ -22,9 +22,13 @@ import { FotoEditComponent } from './fotos/foto-edit.component';
 import { FotolistaComponent } from './fotolista/fotolista.component';
 import { UploaderComponent } from './uploader/uploader.component';
 import { DetalleEditComponent } from './detalle/detalle-edit.component';
+import { DetalleFotoComponent } from './detalle-foto/detalle-foto.component';
 import { DetalleComponent } from './detalle/detalle.component';
-import { ModeloComponent} from './modelo/modelo.component';
+import { ModeloComponent } from './modelo/modelo.component';
+import { ViewComponent} from './view/view.component';
 import { ModeloEditComponent } from './modelo/modelo-edit.component';
+import { HomeButtonComponent } from './homebutton/home-button.component';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -92,8 +96,11 @@ const routes: Routes = [
     UploaderComponent,
     DetalleEditComponent,
     DetalleComponent,
+    DetalleFotoComponent,
     ModeloEditComponent,
     ModeloComponent,
+    ModeloComponent,
+    ViewComponent,
     SubdominioComponent,
     RegistroUsuarioComponent,
     UserComponent,
@@ -104,6 +111,7 @@ const routes: Routes = [
     NavLogedComponent,
     FooterComponent,
     AppComponent,
+    HomeButtonComponent,
     FilterListPipe
   ],
   imports: [
@@ -151,8 +159,9 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule,
     FormsModule,
-     RouterModule.forRoot(routes),
-     BrowserAnimationsModule     
+    AppRoutingModule,     
+    RouterModule.forRoot(routes),
+     BrowserAnimationsModule
   ],  
   exports: [ 
     RouterModule,
