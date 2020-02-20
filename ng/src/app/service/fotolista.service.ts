@@ -10,6 +10,7 @@ import { HandleError }  from '../error/handleError'
 import { environment } from '../../environments/environment';
 import { FotoModel } from '../model/foto.model';
 import { Globals } from '../app.globals';
+import { HttpParams } from '@angular/common/http';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -57,5 +58,13 @@ const httpOptions = {
         .pipe(
           catchError(this.herror.handleError('modelo Put', null)));
         }
-  }
+        del(data:FotoModel): Observable<DBResult>{
+          const httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' })         
+          };                       
+          return this.http.delete<DBResult>(this.endpoint + "&pidFoto=" + data.id + "&pidDetalle="+ data.iddetalle + "&pfoto="+data.foto,  httpOptions)
+          .pipe(
+            catchError(this.herror.handleError('modelo Put', null)));
+          }
+    }
   

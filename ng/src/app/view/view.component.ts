@@ -30,9 +30,10 @@ export class ViewComponent {
   title: string;
   model: DBResult;
   modelo: ModeloModel;
-  modelos: ViewModelo[];
+  public modelos: ViewModelo[];
   detalles: DetalleModel[];
   idmodelo:number;
+  iduser:number;
   currentState:number;
   accion:string = "Agregar";
   action:number;
@@ -42,7 +43,7 @@ export class ViewComponent {
   tareaAccion:string ="Agregar"
   tareaIsEdit:boolean = false;
   dir:string;
-  currentIndex:number;
+  currentIndex:number=-1;
   constructor(private dataService:ViewService,private detalleService: DetalleService, 
    private router: Router, public globals: Globals) {
     this.title = titlemodelos;    
@@ -51,8 +52,7 @@ export class ViewComponent {
 ngOnInit() {
   this.currentState = 0;
   this.idmodelo =0;
-  this.currentIndex = 0;  
-  this.dir = environment.endpointr  + environment.photofolder;// + this.globals.applicationLoginResult.Id + '/' + this.iddetalle + '/';
+  this.dir = environment.endpoint  + environment.photofolder + "/";// + this.globals.applicationLoginResult.Id + '/' + this.iddetalle + '/';
   this.GetAllData();
 }
 GetAllData(){
@@ -74,5 +74,6 @@ GetAllData(){
 changeModelo(pindex:number){
   this.currentIndex = pindex;
   this.idmodelo = this.modelos[this.currentIndex].idmodelo;
+  this.iduser=this.modelos[this.currentIndex].iduser;
 }
 }

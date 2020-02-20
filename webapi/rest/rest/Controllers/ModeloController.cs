@@ -81,6 +81,7 @@ namespace rest.Controllers
         }
 
         [System.Web.Http.HttpPut]
+        [Route("modelo")]
         public IHttpActionResult Put([FromBody] Modelo datos, Guid token, int userid)
         {
             IHttpActionResult _result = null;

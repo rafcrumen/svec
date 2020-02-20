@@ -78,9 +78,17 @@ onUpload(){
         fd.append("foto", this.selectedFile,this.selectedFile.name);
         this.fotoservice.post(fd,  this.id.toString(),this.idmodelo.toString(), this.selectedFile.name).subscribe((data) => {
           this.currentView=1;
-          if (this.fotolista)
-            this.fotolista.GetAllData();
+          this.realoadLista()  
         });        
     }
-    }  
+  }  
+    eliminar(){
+      this.fotolista.delete();
+      //this.realoadLista()
+    }
+    realoadLista(){
+      if (this.fotolista)
+        this.fotolista.GetAllData();
+
+    }
 }

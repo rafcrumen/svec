@@ -1,7 +1,27 @@
-<div class="row">
-</div>
-<div *ngFor='let imagen of lista; let i = index' >
-<div  *ngIf="imageName==imagen.foto" style="display: flex; width: 60vmin; height: 60vmin; margin: 10px; padding:1vmin; border-radius: 10px; background-color: #369; ">
-    <img  src={{dir+imagen.foto}} id="imagen" name ="image" style="width: 58vmin; height: 58vmin; border-radius: 10px;"/>
-</div>
-</div>
+    <div *ngFor='let modelo of lista; let i = index' >
+        <div *ngIf="i==nImage" class="container">
+            <main  class="main tile">
+                <div class="image-div">
+                    <img  *ngIf="modelo.foto" class="img-height" src="{{dir + iduser + '/' + modelo.iddetalle + '/' + modelo.foto}}" 
+                    id="imagen" name ="image"
+                    />
+                </div>
+            </main>
+            <div class="sidebar-top tile">
+                <button title="Volver a Modelo" class="btn btn-primary" (click)="goOut()">
+                    <span class="glyphicon glyphicon-circle-arrow-left"></span>
+                </button>                
+                <h2>{{detalle.corta}}</h2>
+                <p>{{detalle.larga}}</p>
+                <div *ngIf="detalle.largo>0">
+                    Largo: {{detalle.largo}}  
+                </div>                
+                <div *ngIf="detalle.ancho>0">
+                    Ancho: {{detalle.ancho}}
+                </div>                
+                <div *ngIf="detalle.ventanas>0">
+                    Ventanas: {{detalle.ventanas}}
+                </div>                
+            </div>
+        </div>
+    </div>

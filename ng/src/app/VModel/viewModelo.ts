@@ -1,9 +1,7 @@
-export class ViewModelo {
-    public iduser:number;
+import { ModeloModel } from "../model/modelo.model";
+
+export class ViewModelo  extends ModeloModel {
     public idmodelo:number;
     public iddetalle:number;
-    public clave:string;
-    public corta:string;
-    public larga:string;
     public foto:string;
 }

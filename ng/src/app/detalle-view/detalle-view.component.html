@@ -1,0 +1,12 @@
+<div *ngIf="detalles && detalles[currentIndex]" class="container">
+    <main class="main clearfix">
+        <div class="row">
+            <div class="column-6">
+                <div class="media">
+                    <detalle-foto  [dir]="dir" [lista]="lista" [detalle]="detalleModelo" [iduser]="iduser" [indexDetail]="currentIndex" 
+                                   [changeImage]="changeImage" (onChanged)="nextDetail($event)"></detalle-foto>
+                </div>
+            </div>
+        </div>
+    </main>         
+</div>

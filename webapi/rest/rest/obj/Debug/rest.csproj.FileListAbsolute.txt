@@ -23,5 +23,3 @@ D:\SC\svec\webapi\rest\rest\obj\Debug\rest.csproj.CopyComplete
 D:\SC\svec\webapi\rest\rest\obj\Debug\rest.dll
 D:\SC\svec\webapi\rest\rest\obj\Debug\rest.pdb
 D:\SC\svec\webapi\rest\rest\obj\Debug\rest.csprojAssemblyReference.cache
-D:\SC\svec\webapi\rest\rest\obj\Debug\rest.Migrations.UserToken.resources
-D:\SC\svec\webapi\rest\rest\obj\Debug\rest.csproj.GenerateResource.cache

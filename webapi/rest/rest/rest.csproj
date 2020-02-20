@@ -112,10 +112,6 @@
     <Compile Include="Implement\ValidUser.cs" />
     <Compile Include="Infrastructure\AccountValidator.cs" />
     <Compile Include="Infrastructure\ValidUser.cs" />
-    <Compile Include="Migrations\202002110322485_User-Token.cs" />
-    <Compile Include="Migrations\202002110322485_User-Token.designer.cs">
-      <DependentUpon>202002110322485_User-Token.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Detalle.cs" />
     <Compile Include="Models\Foto.cs" />
@@ -143,11 +139,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Uploads\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202002110322485_User-Token.resx">
-      <DependentUpon>202002110322485_User-Token.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -68,5 +68,32 @@ namespace rest.Controllers
             }
             return _result;
         }
+
+        [System.Web.Http.HttpPut]
+        public IHttpActionResult Put([FromBody] Detalle datos)
+        {
+            IHttpActionResult _result = null;
+            Detalle _datos;
+            try
+            {
+                using (DatosContext ctx = new DatosContext())
+                {
+                     _datos = ctx.Detalles.Where(d => d.id == datos.id).FirstOrDefault();
+                    if (datos != null)
+                    {
+                        _datos.corta = datos.corta;
+                        _datos.larga = datos.larga;
+                        _datos.largo = datos.largo;
+                        _datos.ancho = datos.ancho;
+                        _datos.ventanas = datos.ventanas;
+                    }
+                    _result = Ok(ctx.SaveChanges());
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return _result;
+        }
     }
 }

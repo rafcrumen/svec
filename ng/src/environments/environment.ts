@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   endpointr: 'http://rafael-mendoza.com/svec/webapi/',
   endpoint: 'http://localhost:44353/',
-  photofolder: 'Uploads'
+  photofolder: 'Uploads',
+  isPhotoChange: false
 };
 
 /*

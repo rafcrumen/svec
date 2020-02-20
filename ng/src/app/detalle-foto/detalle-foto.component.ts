@@ -1,78 +1,73 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, Input,HostListener } from '@angular/core';
+import { Component, EventEmitter,OnInit, ChangeDetectionStrategy, ChangeDetectorRef, Input,Output,HostListener } from '@angular/core';
 import {interval} from 'rxjs/internal/observable/interval';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FotoModel } from '../model/foto.model';
-import { FotolistaService } from '../service/fotolista.service';
+import {  FotoDetalleModel } from '../model/foto-detalle.model';
 import { Globals, CrudActions} from '../app.globals';
 import { environment } from '../../environments/environment';
+import { DetalleModel } from '../model/detalle.model';
 @Component({
   selector: 'detalle-foto',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './detalle-foto.component.html'  
+  templateUrl: './detalle-foto.component.html',
+  styleUrls: ['./detalle-foto.component.css']
 })
 export class DetalleFotoComponent implements OnInit {
-  @Input() iddetalle:number;
-  @Input() idmodelo:number;
+  //@Input() iddetalle:number;
+  @Input() dir:string;
+  @Input() iduser:number;
+  @Input() lista:Array<FotoModel>;
   @Input() changeImage:boolean;
-  lista : Array<FotoModel>;
+  @Input() indexDetail:number;
+  @Input() detalle:DetalleModel;
+  @Output() onChanged: EventEmitter<number>;
+  public model:FotoDetalleModel;  
   imageName: string;
-  nImage:number=-1;
-  dir:string;
+  nImage:number=0;
   speed:number;
   myInterval:any;
   suscrub:any;
-   constructor(private dataService:FotolistaService, public globals: Globals,
+   constructor(public globals: Globals,
     private changedetector: ChangeDetectorRef,fb: FormBuilder){
-    this.lista = new Array<FotoModel>();
+    this.onChanged = new EventEmitter<number>();
     this.speed=2000;
     }
    ngOnInit(){
-    if (this.iddetalle > 0){    
-        //this.dir = environment.endpoint + '/' + this.globals.applicationUser.subdominioa.trim() + '/' + this.idmodelo + '/';
-        this.dir = environment.endpoint + '/' + environment.photofolder + '/' + this.globals.applicationLoginResult.Id + '/' + this.iddetalle + '/';
-        this.GetAllData();
+    let innerHeight = window.innerHeight;
+    let imageHeight = window.innerHeight * .75;
+    document.documentElement.style.setProperty('--maxInnerHeight', `${innerHeight}px`);        
+    document.documentElement.style.setProperty('--imageHeight', `${imageHeight}px`);        
+    if (this.lista.length ==0) {
+      this.nextDetail();
     }
     interval(this.speed).subscribe(() => {  
       this.moveImage();
     });    
   }
-GetAllData(){
-this.dataService.getByIdDetalle(this.iddetalle).subscribe((data) => {
-  if (data){
-    this.lista = data;
-    this.moveImage();
-  }
-  });
-}
 moveImage(){
   if (this.changeImage){
     this.changedetector.markForCheck();
     this.changedetector.detectChanges();
     if (this.lista.length >0) {
-        if (this.nImage < this.lista.length -1 ) {          
+        if (this.nImage < this.lista.length) {          
               this.nImage++;
+              //this.setImage();//this.imageName=this.dir + this.lista[this.nImage].foto //"../assets/image/" + this.nImage + ".jpg";
             }
-            else { 
-              this.nImage=0;
+        else { 
+          this.nextDetail();
       }         
-      this.setImage();//this.imageName=this.dir + this.lista[this.nImage].foto //"../assets/image/" + this.nImage + ".jpg";
-    }     
+    } else {
+      this.nextDetail();
+    }    
   }
 }
-setImage()
-{
-    if (this.nImage < this.lista.length ){
-        this.imageName=this.lista[this.nImage].foto;//this.dir + 
-    }
-}
-// changeSpeed(){
-//   this.changedetector.markForCheck();
-//   this.changedetector.detectChanges();
-//  clearInterval(this.myInterval);
-//     this.suscrub.unsuscribe();
-//     this.myInterval  = interval(20000);
-//     this.suscrub = this.myInterval.subscribe(() => {  
-//       this.moveImage();
-//     });
-//   }
+nextDetail(){
+  this.nImage=0;
+  console.log("next detail");
+  this.onChanged.emit(this.indexDetail);
+  }
+  goOut(){
+    this.changeImage=false;
+    this.onChanged.emit(-1);
+  }  
 }
