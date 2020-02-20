@@ -36,7 +36,8 @@ const httpOptions = {
     }
     
       getById (id: number ): Observable<ModeloModel>{
-        return this.http.get<ModeloModel>(this.endpoint +  "&id=" + id)
+        console.log(this.endpoint +  "&id=" + id);
+        return this.http.get<ModeloModel>(this.endpoint +  "&id=" + id)        
         .pipe(
           tap(pitos => this.herror.log('idn')),
           catchError(this.herror.handleError('idn1', null))

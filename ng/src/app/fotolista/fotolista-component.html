@@ -1,8 +1,18 @@
-<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let  elemento of lista" cdkDrag>
-            <img  name="{{elemento.id}}" src="{{dir + elemento.foto}}" height="200" width="200">
+<div cdkDropListGroup >
+    <div class="drop-container">    
+        <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)" [cdkDropListData]="lista" >
+                <div class="example-box" *ngFor="let  elemento of lista" cdkDrag>
+                    <img  name="{{elemento.id}}" src="{{dir + elemento.foto}}" height="200" width="200" (click)="selectMe(elemento)">
+                </div>
         </div>
+        <!-- <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)" [cdkDropListData]="delLista">
+            <div class="example-box-delete" *ngFor="let  elemento of delLista" cdkDrag>
+                <img  name="{{elemento.id}}" src="{{dir + elemento.foto}}" height="200" width="200">
+            </div>
+        </div> -->
+    </div>
 </div>
+
     <!-- <table class='table table-striped table-hover'>
     <thead>
         <tr>

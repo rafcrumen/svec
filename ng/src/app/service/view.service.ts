@@ -11,6 +11,7 @@ import { ViewModelo } from '../VModel/viewModelo';
 import { HandleError }  from '../error/handleError'
 import { environment } from '../../environments/environment';
 import { Globals } from '../app.globals';
+import {  FotoDetalleModel } from '../model/foto-detalle.model';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -35,5 +36,12 @@ const httpOptions = {
           catchError(this.herror.handleError('idn1', null))
         );
     }
-}
+    getByModel (idmodelo:number ): Observable<FotoDetalleModel>{
+      console.log(this.endpoint)
+      return this.http.get<FotoDetalleModel>(this.endpoint + "?idmodelo=" + idmodelo)
+      .pipe(
+        tap(pitos => this.herror.log('idn')),
+        catchError(this.herror.handleError('idn1', null))
+      );
+  }}
   

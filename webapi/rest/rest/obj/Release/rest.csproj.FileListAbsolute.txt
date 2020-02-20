@@ -19,8 +19,6 @@ D:\SC\svec\webapi\rest\rest\bin\System.Web.Http.WebHost.xml
 D:\SC\svec\webapi\rest\rest\bin\es\System.Net.Http.Formatting.resources.dll
 D:\SC\svec\webapi\rest\rest\bin\es\System.Web.Http.resources.dll
 D:\SC\svec\webapi\rest\rest\bin\es\System.Web.Http.WebHost.resources.dll
-D:\SC\svec\webapi\rest\rest\obj\Release\rest.Migrations.UserToken.resources
-D:\SC\svec\webapi\rest\rest\obj\Release\rest.csproj.GenerateResource.cache
 D:\SC\svec\webapi\rest\rest\obj\Release\rest.csproj.CopyComplete
 D:\SC\svec\webapi\rest\rest\obj\Release\rest.dll
 D:\SC\svec\webapi\rest\rest\obj\Release\rest.pdb

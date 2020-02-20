@@ -24,7 +24,9 @@ import { UploaderComponent } from './uploader/uploader.component';
 import { DetalleEditComponent } from './detalle/detalle-edit.component';
 import { DetalleFotoComponent } from './detalle-foto/detalle-foto.component';
 import { DetalleComponent } from './detalle/detalle.component';
+import { DetalleViewComponent } from './detalle-view/detalle-view.component';
 import { ModeloComponent } from './modelo/modelo.component';
+import { ModeloFotoComponent } from './modelo-foto/modelo-foto.component';
 import { ViewComponent} from './view/view.component';
 import { ModeloEditComponent } from './modelo/modelo-edit.component';
 import { HomeButtonComponent } from './homebutton/home-button.component';
@@ -72,9 +74,9 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatTreeModule,
+  MatTreeModule
 } from '@angular/material';
-
+import {CdkStepperModule} from '@angular/cdk/stepper';
 
 
 const routes: Routes = [
@@ -97,9 +99,10 @@ const routes: Routes = [
     DetalleEditComponent,
     DetalleComponent,
     DetalleFotoComponent,
+    DetalleViewComponent,
     ModeloEditComponent,
     ModeloComponent,
-    ModeloComponent,
+    ModeloFotoComponent,
     ViewComponent,
     SubdominioComponent,
     RegistroUsuarioComponent,
@@ -154,6 +157,7 @@ const routes: Routes = [
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    CdkStepperModule,
     ReactiveFormsModule,
     BrowserModule,
     HttpClientModule,

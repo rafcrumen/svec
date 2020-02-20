@@ -13,6 +13,9 @@
         <button *ngIf="currentView==1" title="Vista previa" class="btn btn-primary" (click)="currentView=3">
                 <span class="glyphicon glyphicon-film"></span>
         </button>
+        <button *ngIf="currentView==1" title="Eliminar" class="btn btn-primary" (click)="eliminar()">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
         <button *ngIf="changeImage && currentView==3" title="Detener Cambio de Imagen" class="btn btn-primary" (click)="changeImage=false">
                 <span class="glyphicon glyphicon-pause"></span>
         </button>                

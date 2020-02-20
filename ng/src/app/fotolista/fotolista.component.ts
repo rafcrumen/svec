@@ -36,7 +36,8 @@ export class FotolistaComponent implements OnInit{
   title: string;
   model: DBResult;
   modelo: FotoModel;
-  lista: FotoModel[];
+  lista: Array<FotoModel>;
+  delLista: FotoModel[];
   ubicacion: number[]
   currentState:number;
   accion:string = "Agregar";
@@ -48,6 +49,7 @@ export class FotolistaComponent implements OnInit{
   tareaAccion:string ="Agregar"
   tareaIsEdit:boolean = false;
   dir:string;
+  currentFoto:FotoModel;
   constructor(private dataService:FotolistaService, private router: Router, public globals: Globals) {
    this.title = titlemodelos;    
    this.onChanged = new EventEmitter<boolean>();    
@@ -57,6 +59,7 @@ ngOnInit() {
   this.id=0;
   this.currentState = 0;
   this.lista = new Array<FotoModel>();
+  this.delLista = new Array<FotoModel>();
   if (this.iddetalle > 0)    
     this.GetAllData();
 }
@@ -64,6 +67,7 @@ GetAllData(){
   this.dataService.getByIdDetalle(this.iddetalle).subscribe((data) => {
     if (data){
       this.lista = data;
+      //this.delLista = data;      
       this.ubicacion = new Array();
       this.posicion = 0; 
       this.lista.forEach(element => {
@@ -112,13 +116,31 @@ GetAllData(){
     this.onChanged.emit(false);
   }
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.lista, event.previousIndex, event.currentIndex);    
-    let _self = this;
-    let observableBatch = [];
-    let _posicion = 0;
-    this.lista.forEach((foto) => {
-        foto.posicion =_posicion++;
-      observableBatch.push(this.dataService.put(foto).subscribe((data) => {}))});
-     forkJoin(observableBatch);  
+    //moveItemInArray(this.lista, event.previousIndex, event.currentIndex);    
+    console.log("droping. isPointerOverContainer .." + event["isPointerOverContainer"]  );
+    console.log("droping. event.container.." + event.container );
+    if (event.previousContainer === event.container && event.previousIndex != event.currentIndex) {
+        console.log("mover");
+        moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+        let _self = this;
+        let observableBatch = [];
+        let _posicion = 0;
+        this.lista.forEach((foto) => {
+          foto.posicion =_posicion++;
+          observableBatch.push(this.dataService.put(foto).subscribe((data) => {}))});
+          forkJoin(observableBatch);  
+    } 
   }
+  selectMe(elem:FotoModel){
+    this.currentFoto = elem;
+  }
+  delete() {
+    if (this.currentFoto) {
+      this.lista.splice(this.lista.findIndex(l => l.id == this.currentFoto.id), 1);
+       this.dataService.del(this.currentFoto).subscribe((data) => {
+         //this.GetAllData();
+       });   
+       this.currentFoto = null;
+      }
+  }  
 }

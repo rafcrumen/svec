@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
   endpoint: 'http://rafael-mendoza.com/svec/webapi/',
-  photofolder: 'Uploads'
+  photofolder: 'Uploads',
+  isPhotoChange: false
 };

@@ -1,0 +1,29 @@
+<div  *ngFor='let modelo of lista; let i = index' >
+    <div *ngIf="i==nImage" class="container">
+        <main  class="main tile">
+            <div class="image-div">
+                <img  *ngIf="modelo.foto" class="img-height" src="{{dir + modelo.iduser + '/' + modelo.iddetalle + '/' + modelo.foto}}" 
+                id="imagen" name ="image"
+                />
+            </div>
+        </main>
+        <div class="sidebar-top tile">
+            <h1>{{modelo.corta}}</h1>
+            <p>{{modelo.larga}}</p>
+            <button title="Ver detalles" class="btn btn-primary" (click)="changeModelo(i)">
+                <span class="glyphicon glyphicon-zoom-in"></span>
+            </button>                
+
+        </div>
+        <div class="sidebar-bottom tile centered">
+            Recamaras: {{modelo.recamaras}}
+            Baños: {{modelo.banos}}
+            <div class="cost">
+                <small>Precio</small>
+                <span class="cost-currency">$</span>
+                <span class="cost-dollars">{{modelo.precio}}</span>        
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -24,7 +24,7 @@ export class GirarComponent implements OnInit {
    constructor(private dataService:FotolistaService, public globals: Globals,
     private changedetector: ChangeDetectorRef,fb: FormBuilder){
     this.lista = new Array<FotoModel>();
-    this.speed=2000;
+    this.speed=5000;
     }
    ngOnInit(){
     if (this.iddetalle > 0){    
